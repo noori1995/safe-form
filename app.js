@@ -73,6 +73,7 @@ app.post(
 
     // Handle form submission (e.g., save to database, send email, etc.)
     // For demonstration purposes, we'll just send a success response
+    console.log("Form submitted successfully!");
     res
       .status(200)
       .json({
