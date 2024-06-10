@@ -78,6 +78,11 @@ app.post(
   }
 );
 
+app.use("/", express.static(path.join(__dirname, "public")));
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "views", "index.html"));
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   if (err.code !== "EBADCSRFTOKEN") return next(err);
