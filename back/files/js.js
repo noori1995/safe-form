@@ -1,5 +1,5 @@
 async function getCsrfToken() {
-  const response = await fetch("http://localhost:3000/api/get-csrf-token"); // Adjust URL accordingly
+  const response = await fetch("https://test.learnary.ir/api/get-csrf-token"); // Adjust URL accordingly
   const data = await response.json();
   console.log(data);
   document.getElementById("csrfToken").value = data.csrfToken;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("http://localhost:3000/api/submit-form", {
+      const response = await fetch("https://test.learnary.ir/api/submit-form", {
         // Adjust URL accordingly
         method: "POST",
         headers: {
