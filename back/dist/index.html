@@ -5,25 +5,14 @@
   <title>Form with CSRF and reCAPTCHA</title>
 </head>
 <body>
-  <form id="myForm" action="/api/submit-form" method="post">
+  <form id="myForm">
     <input type="hidden" id="csrfToken" name="_csrf">
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="email" placeholder="Email" required>
     <button type="submit">Submit</button>
   </form>
 
-  <script>
-    async function getCsrfToken() {
-  const response = await fetch("localhost:3000/api/get-csrf-token");
-  const data = await response.json();
-  console.log(data);
-  document.getElementById("csrfToken").value = data.csrfToken;
-}
-
-document.addEventListener("DOMContentLoaded", (event) => {
-  getCsrfToken();
-});
-
-  </script>
+  <script src="/js.js" />
+  <script>console.log('hi')</script>
 </body>
 </html>

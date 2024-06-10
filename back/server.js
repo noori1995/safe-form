@@ -32,7 +32,12 @@ const limiter = rateLimit({
 
 app.use("/api/", limiter);
 
-const csrfProtection = csrf({ cookie: true });
+const csrfProtection = csrf({
+  cookie: true,
+  secure: true,
+  maxAge: 100,
+  httpOnly: true
+});
 
 function verifyRecaptcha(req, res, next) {
   recaptcha.verify(req, (error, data) => {
@@ -69,8 +74,14 @@ app.post(
     }
 
     const { email, name } = req.body;
+    console.log('success')
     res.json({ message: "Form submitted successfully", data: { email, name } });
   }
+);
+
+app.use(
+  "/",
+  express.static(path.join(__dirname, "files"))
 );
 
 app.get("/", function (req, res) {
