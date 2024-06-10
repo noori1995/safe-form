@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form with CSRF and reCAPTCHA</title>
+</head>
+<body>
+  <form id="myForm" action="/api/submit-form" method="post">
+    <input type="hidden" id="csrfToken" name="_csrf">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="/js.js" />
+</body>
+</html>
