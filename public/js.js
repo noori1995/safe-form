@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  fetch("localhost:3000/form")
+  fetch("/form")
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("token").value = data.sessionToken;

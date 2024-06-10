@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require("path")
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -17,10 +17,28 @@ function generateToken() {
 }
 
 // Middleware setup
-app.use(helmet()); // Security headers
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Configure CSP with Helmet
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "https://www.google.com/recaptcha/",
+          "https://www.gstatic.com/recaptcha/",
+        ],
+        frameSrc: ["'self'", "https://www.google.com/recaptcha/"],
+        imgSrc: ["'self'", "https://www.gstatic.com/recaptcha/"],
+        connectSrc: ["'self'", "https://www.google.com/recaptcha/"],
+      },
+    },
+  })
+);
 
 // Session middleware
 app.use(
@@ -43,7 +61,7 @@ app.use(csrfProtection);
 // Rate limiting middleware
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 15, // Limit each IP to 10 requests per windowMs
+  max: 100, // Limit each IP to 100 requests per windowMs
   message: "Too many requests from this IP, please try again after 15 minutes",
 });
 app.use(limiter);
@@ -86,10 +104,7 @@ app.post("/submit", async (req, res) => {
   }
 });
 
-app.use(
-  "/",
-  express.static(path.join(__dirname, "public"))
-);
+app.use("/", express.static(path.join(__dirname, "public")));
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
