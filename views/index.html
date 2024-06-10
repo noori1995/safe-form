@@ -3,19 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Form</title>
+  <title>Secure Form Submission</title>
+  <!-- Google reCAPTCHA script -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-  <h1>Submit Your Data</h1>
-  <form action="/submit" method="POST" id="secure-form">
-    <input type="hidden" name="token" id="token">
-    <input type="hidden" name="_csrf" id="csrf">
-    <input type="text" name="data" placeholder="Enter some data" required>
-    <div class="g-recaptcha" data-sitekey="6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC"></div>
-    <button data-sitekey="6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC"  type="submit">Submit</button>
-  </form>
+  <h1>Secure Form Submission</h1>
+  <form action="/submit" method="POST">
+    <!-- CSRF token -->
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    
+    <!-- Name -->
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
 
-  <script src="/js.js" />
+    <!-- Email -->
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+    <!-- Message -->
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" required></textarea><br>
+
+    <!-- Google reCAPTCHA -->
+    <div class="g-recaptcha" data-sitekey="6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC"></div><br>
+
+    <!-- Submit button -->
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>
