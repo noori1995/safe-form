@@ -86,7 +86,7 @@ app.post("/submit", async (req, res) => {
   }
 
   // Verify reCAPTCHA
-  const secretKey = "your_secret_key";
+  const secretKey = "6LcbjPUpAAAAAK1DWZpiutdnc32emQpdyjS0U4F8";
   const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptcha}&remoteip=${req.connection.remoteAddress}`;
 
   try {
