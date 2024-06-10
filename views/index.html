@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Form</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <h1>Submit Your Data</h1>
+  <form action="localhost:3000/submit" method="POST" id="secure-form">
+    <input type="hidden" name="token" id="token">
+    <input type="hidden" name="_csrf" id="csrf">
+    <input type="text" name="data" placeholder="Enter some data" required>
+    <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="/js.js" />
+</body>
+</html>
