@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Enable trust proxy
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 // Rate limiter to prevent brute-force attacks
 const limiter = rateLimit({
