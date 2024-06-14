@@ -7,9 +7,12 @@ async function getCsrfToken() {
 }
 console.log('start...')
 let grecaptchaCode = null;
- var onload = function(e,token) {
-    console.log(token,"grecaptcha is ready!", e);
-  };
+var captchaSuccess = function(e) {
+  console.log( "grecaptcha success!", e);
+}
+var onload = function(e) {
+  console.log("grecaptcha is ready!", e);
+};
 async function handleSubmit(event) {
   console.log('submit...')
   event.preventDefault();
