@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.google.com; object-src 'self'"> -->
   <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.google.com https://www.gstatic.com;"> -->
-  <meta http-equiv="Content-Security-Policy" content="script-src-elem *.google.com;">
+  <meta http-equiv="Content-Security-Policy" content="script-src *.google.com;">
   <title>Form with CSRF and reCAPTCHA</title>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -16,13 +16,6 @@
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="email" placeholder="Email" required>
     <div class="g-recaptcha" data-sitekey="6LdOLRgTAAAAAPYECt9KLIL_LLwOuuuHAUw7QUTm">
-    <div style="width: 304px; height: 78px;">
-        <div>
-            <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LdOLRgTAAAAAPYECt9KLIL_LLwOuuuHAUw7QUTm&amp;co=aHR0cHM6Ly9jc3AtZXhwZXJpbWVudHMuYXBwc3BvdC5jb206NDQz&amp;hl=en&amp;v=r20160926121436&amp;size=normal&amp;cb=g72al0v10dxg" title="recaptcha widget" width="304" height="78" role="presentation" frameborder="0" scrolling="no" name="undefined"></iframe>
-        </div>
-        <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea>
-    </div>
-</div>
     <button type="submit">Submit</button>
   </form>
   <script src="/js.js" defer/>
