@@ -6,36 +6,38 @@ async function getCsrfToken() {
   return data.csrfToken;
 }
 console.log('start...')
-async function handleSubmit(event) {
-  console.log('submit...')
-  event.preventDefault();
+ var onloadCallback = function () {
+   alert("grecaptcha is ready!");
+   async function handleSubmit(event) {
+     console.log("submit...");
+     event.preventDefault();
 
-  const csrfToken = await getCsrfToken();
+     const csrfToken = await getCsrfToken();
 
-  const formData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    _csrf: csrfToken,
-  };
+     const formData = {
+       name: document.getElementById("name").value,
+       email: document.getElementById("email").value,
+       _csrf: csrfToken,
+     };
 
-  const response = await fetch("/api/submit-form", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "CSRF-Token": csrfToken,
-    },
-    body: JSON.stringify({ ...formData, recaptchaToken }),
-  });
+     const response = await fetch("/api/submit-form", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+         "CSRF-Token": csrfToken,
+       },
+       body: JSON.stringify({ ...formData, recaptchaToken }),
+     });
 
-  const result = await response.json();
+     const result = await response.json();
 
-  if (response.ok) {
-    alert(result.message);
-  } else {
-    alert(`Error: ${result.message}`);
-  }
-}
+     if (response.ok) {
+       alert(result.message);
+     } else {
+       alert(`Error: ${result.message}`);
+     }
+   }
 
-document.getElementById("myForm").addEventListener("submit", handleSubmit);
-
+   document.getElementById("myForm").addEventListener("submit", handleSubmit);
+ };
 // Add your logic to submit to your backend server here.
