@@ -35,7 +35,7 @@ app.use("/api/", limiter);
 const csrfProtection = csrf({
   cookie: true,
   secure: true,
-  maxAge: 100,
+  maxAge: 60*60*24*1000,
   httpOnly: true
 });
 
