@@ -41,7 +41,7 @@ const csrfProtection = csrf({
 });
 
 function verifyRecaptcha(req, res, next) {
-  recaptcha.verify(req, (error, data) => {
+  recaptcha.middleware.verify(req, (error, data) => {
     if (error) {
       return res
         .status(400)
