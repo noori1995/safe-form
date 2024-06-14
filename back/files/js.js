@@ -1,6 +1,3 @@
-var imported = document.createElement("script");
-imported.src = "https://www.google.com/recaptcha/api.js";
-document.head.appendChild(imported);
 async function getCsrfToken() {
   const response = await fetch("/api/get-csrf-token", {
     credentials: "same-origin",
@@ -20,12 +17,9 @@ async function handleSubmit(event) {
     _csrf: csrfToken,
   };
 
-  const recaptchaToken = await grecaptcha.execute(
-    "6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC",
-    {
-      action: "submit",
-    }
-  );
+  const recaptchaToken = await grecaptcha.execute("6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC", {
+    action: "submit",
+  });
 
   const response = await fetch("/api/submit-form", {
     method: "POST",
