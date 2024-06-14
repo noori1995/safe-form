@@ -7,8 +7,9 @@ async function getCsrfToken() {
 }
 console.log('start...')
 let grecaptchaCode = null;
-var captchaSuccess = function(e) {
-  console.log( "grecaptcha success!", e);
+var captchaSuccess = function(token) {
+  console.log( "grecaptcha success!", token);
+  grecaptchaCode = token;
 }
 var onload = function(e) {
   console.log("grecaptcha is ready!", e);
@@ -31,7 +32,7 @@ async function handleSubmit(event) {
       "Content-Type": "application/json",
       "CSRF-Token": csrfToken,
     },
-    body: JSON.stringify({ ...formData, recaptchaToken }),
+    body: JSON.stringify({ ...formData, grecaptchaCode }),
   });
 
   const result = await response.json();
