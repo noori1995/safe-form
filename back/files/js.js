@@ -17,13 +17,6 @@ async function handleSubmit(event) {
     _csrf: csrfToken,
   };
 
-  const recaptchaToken = await grecaptcha.execute(
-    "6LcCEfkpAAAAACloFBmF8PIIHNbB_VeZV9N6-6DP",
-    {
-      action: "submit",
-    }
-  );
-
   const response = await fetch("/api/submit-form", {
     method: "POST",
     headers: {
@@ -41,5 +34,12 @@ async function handleSubmit(event) {
     alert(`Error: ${result.message}`);
   }
 }
+  grecaptcha.ready(function () {
+    grecaptcha
+      .execute("reCAPTCHA_site_key", { action: "submit" })
+      .then(function (token) {
+        // Add your logic to submit to your backend server here.
+      });
+  });
 
 document.getElementById("myForm").addEventListener("submit", handleSubmit);
