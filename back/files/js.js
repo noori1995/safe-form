@@ -5,41 +5,43 @@ async function getCsrfToken() {
   const data = await response.json();
   return data.csrfToken;
 }
-
-async function handleSubmit(event) {
-  event.preventDefault();
-
-  const csrfToken = await getCsrfToken();
-
-  const formData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    _csrf: csrfToken,
-  };
-
-  const response = await fetch("/api/submit-form", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "CSRF-Token": csrfToken,
-    },
-    body: JSON.stringify({ ...formData, recaptchaToken }),
-  });
-
-  const result = await response.json();
-
-  if (response.ok) {
-    alert(result.message);
-  } else {
-    alert(`Error: ${result.message}`);
-  }
-}
   grecaptcha.ready(function () {
     grecaptcha
-      .execute("6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC", { action: "submit" })
+      .execute("6LeuE_kpAAAAAIlv6byBxRDNvO06_UNBu3soMmZr", { action: "submit" })
       .then(function (token) {
+        async function handleSubmit(event) {
+          event.preventDefault();
+
+          const csrfToken = await getCsrfToken();
+
+          const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            _csrf: csrfToken,
+          };
+
+          const response = await fetch("/api/submit-form", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "CSRF-Token": csrfToken,
+            },
+            body: JSON.stringify({ ...formData, recaptchaToken }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            alert(result.message);
+          } else {
+            alert(`Error: ${result.message}`);
+          }
+        }
+
+        document
+          .getElementById("myForm")
+          .addEventListener("submit", handleSubmit);
+
         // Add your logic to submit to your backend server here.
       });
   });
-
-document.getElementById("myForm").addEventListener("submit", handleSubmit);

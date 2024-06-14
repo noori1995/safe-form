@@ -12,8 +12,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Replace these with your actual reCAPTCHA keys
-const RECAPTCHA_SITE_KEY = "6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC";
-const RECAPTCHA_SECRET_KEY = "6LcbjPUpAAAAAK1DWZpiutdnc32emQpdyjS0U4F8";
+const RECAPTCHA_SITE_KEY = "6LeuE_kpAAAAAIlv6byBxRDNvO06_UNBu3soMmZr";
+const RECAPTCHA_SECRET_KEY = "6LeuE_kpAAAAAHqpuxlW2e0K8lzmYvokNUK1wqCc";
 
 const recaptcha = new expressRecaptcha(
   RECAPTCHA_SITE_KEY,
