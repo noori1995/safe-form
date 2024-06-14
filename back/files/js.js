@@ -36,7 +36,7 @@ async function handleSubmit(event) {
 }
   grecaptcha.ready(function () {
     grecaptcha
-      .execute("reCAPTCHA_site_key", { action: "submit" })
+      .execute("6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC", { action: "submit" })
       .then(function (token) {
         // Add your logic to submit to your backend server here.
       });
