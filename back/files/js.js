@@ -9,6 +9,7 @@ async function getCsrfToken() {
     grecaptcha
       .execute("6LeuE_kpAAAAAIlv6byBxRDNvO06_UNBu3soMmZr", { action: "submit" })
       .then(function (token) {
+        console.log('grecaptcha ok')
         async function handleSubmit(event) {
           event.preventDefault();
 
