@@ -1,5 +1,5 @@
 async function getCsrfToken() {
-  const response = await fetch("test.learnary.ir/api/get-csrf-token", {
+  const response = await fetch("/api/get-csrf-token", {
     credentials: "same-origin",
   });
   const data = await response.json();
@@ -21,7 +21,7 @@ async function handleSubmit(event) {
     action: "submit",
   });
 
-  const response = await fetch("test.learnary.ir/api/submit-form", {
+  const response = await fetch("/api/submit-form", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
