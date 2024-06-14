@@ -7,7 +7,7 @@ async function getCsrfToken() {
 }
 console.log('start...')
 let grecaptchaCode = null;
- var onloadCallback = function(e) {
+ var onload = function(e) {
     alert(e,"grecaptcha is ready!");
   };
 async function handleSubmit(event) {
