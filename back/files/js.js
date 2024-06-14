@@ -17,9 +17,12 @@ async function handleSubmit(event) {
     _csrf: csrfToken,
   };
 
-  const recaptchaToken = await grecaptcha.execute("6LcbjPUpAAAAAG-_vDI5QSE9O0M0aBpnrG4KYqAC", {
-    action: "submit",
-  });
+  const recaptchaToken = await grecaptcha.execute(
+    "6LcCEfkpAAAAACloFBmF8PIIHNbB_VeZV9N6-6DP",
+    {
+      action: "submit",
+    }
+  );
 
   const response = await fetch("/api/submit-form", {
     method: "POST",
