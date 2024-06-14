@@ -21,7 +21,15 @@ const recaptcha = new expressRecaptcha(
 );
 
 app.use(bodyParser.json());
-// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "script-src": ["'self'", "google.com"],
+      },
+    },
+  })
+);
 app.use(cookieParser());
 
 const limiter = rateLimit({
