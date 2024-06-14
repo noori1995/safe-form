@@ -7,6 +7,7 @@ async function getCsrfToken() {
 }
 console.log('start...')
 async function handleSubmit(event) {
+  console.log('submit...')
   event.preventDefault();
 
   const csrfToken = await getCsrfToken();
