@@ -42,7 +42,7 @@ const csrfProtection = csrf({
 
 function verifyRecaptcha(req, res, next) {
   recaptcha.middleware.verify(req, (error, data) => {
-    if (error) {
+    if (req.recaptcha.error) {
       return res
         .status(400)
         .json({ message: "reCAPTCHA verification failed", error });
