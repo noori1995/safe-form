@@ -21,7 +21,7 @@ const recaptcha = new expressRecaptcha(
 );
 
 app.use(bodyParser.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(cookieParser());
 
 const limiter = rateLimit({
