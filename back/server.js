@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
-const expressRecaptcha = require("express-recaptcha").RecaptchaV3;
+const expressRecaptcha = require("express-recaptcha").RecaptchaV2;
 const { body, validationResult } = require("express-validator");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
@@ -36,8 +36,8 @@ app.use("/api/", limiter);
 const csrfProtection = csrf({
   cookie: true,
   secure: true,
-  maxAge: 60*60*24*1000,
-  httpOnly: true
+  maxAge: 15 * 60 * 1000,
+  httpOnly: true,
 });
 
 function verifyRecaptcha(req, res, next) {
