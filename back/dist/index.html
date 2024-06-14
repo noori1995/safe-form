@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.google.com; object-src 'self'"> -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.google.com https://www.gstatic.com;">
+  <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://www.google.com https://www.gstatic.com;"> -->
   <title>Form with CSRF and reCAPTCHA</title>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-  
+  <script src="/js.js" defer/>
 </head>
 <body>
   <form id="myForm">
@@ -16,10 +15,5 @@
     <input type="email" name="email" placeholder="Email" required>
     <button type="submit">Submit</button>
   </form>
-
-  <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
-  <script src="/js.js" defer/>
-  // <script>console.log('hi')</script>
-
 </body>
 </html>
