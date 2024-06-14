@@ -47,8 +47,8 @@ function verifyRecaptcha(req, res, next) {
         .status(400)
         .json({ message: "reCAPTCHA verification failed", error });
     }
-    next();
   });
+  next();
 }
 
 app.get("/api/get-csrf-token", csrfProtection, (req, res) => {
