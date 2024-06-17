@@ -119,7 +119,7 @@ app.post(
     const { email, name, address, latitude, longitude, startTime } = req.body;
     
     // Calculate form submission time
-    const parsedStartTime = parseInt(req.body.startTime, 10);
+    const parsedStartTime = parseInt(startTime, 10);
     const endTime = Date.now();
     const duration = endTime - parsedStartTime;
 
