@@ -121,7 +121,7 @@ app.post(
     // Calculate form submission time
     const parsedStartTime = parseInt(startTime, 10);
     const endTime = Date.now();
-    const duration = endTime - parsedStartTime;
+    const duration = (endTime - parsedStartTime) / 1000;
 
     console.log("success");
     res.json({
