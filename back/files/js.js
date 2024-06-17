@@ -26,6 +26,7 @@ async function handleSubmit(event) {
     address: document.getElementById("address").value,
     latitude: document.getElementById("latitude").value,
     longitude: document.getElementById("longitude").value,
+    startTime: document.getElementById("startTime").value,
     _csrf: csrfToken,
   };
 
