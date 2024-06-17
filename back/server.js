@@ -57,8 +57,7 @@ const ipBlocker = (req, res, next) => {
 };
 
 
-app.use("/api/",ipBlocker);
-app.use("/api/submit-form", limiter);
+app.use("/api", ipBlocker);
 
 const csrfProtection = csrf({
   cookie: true,
@@ -84,6 +83,7 @@ app.get("/api/get-csrf-token", csrfProtection, (req, res) => {
 
 app.post(
   "/api/submit-form",
+  limiter,
   csrfProtection,
   verifyRecaptcha,
   [
