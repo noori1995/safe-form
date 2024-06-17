@@ -5,17 +5,17 @@ async function getCsrfToken() {
   const data = await response.json();
   return data.csrfToken;
 }
-console.log('start...')
+console.log("start...");
 let grecaptchaCode = null;
-var captchaSuccess = function(token) {
-  console.log( "grecaptcha success!", token);
+var captchaSuccess = function (token) {
+  console.log("grecaptcha success!", token);
   grecaptchaCode = token;
-}
-var onload = function(e) {
+};
+var onload = function (e) {
   console.log("grecaptcha is ready!", e);
 };
 async function handleSubmit(event) {
-  console.log('submit...')
+  console.log("submit...");
   event.preventDefault();
 
   const csrfToken = await getCsrfToken();
@@ -23,6 +23,9 @@ async function handleSubmit(event) {
   const formData = {
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
+    address: document.getElementById("address").value,
+    latitude: document.getElementById("latitude").value,
+    longitude: document.getElementById("longitude").value,
     _csrf: csrfToken,
   };
 
@@ -46,4 +49,14 @@ async function handleSubmit(event) {
 
 document.getElementById("myForm").addEventListener("submit", handleSubmit);
 
-// Add your logic to submit to your backend server here.
+document.addEventListener("DOMContentLoaded", (event) => {
+  document.getElementById("startTime").value = Date.now();
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      document.getElementById("latitude").value = position.coords.latitude;
+      document.getElementById("longitude").value = position.coords.longitude;
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+});
